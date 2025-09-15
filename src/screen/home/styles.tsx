@@ -83,4 +83,43 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         marginRight: 8,
     },
+    baixo: {
+        flex: 1,
+        backgroundColor: '#f2f2f2',
+        paddingHorizontal: 24,   
+        alignItems: 'stretch',
+        justifyContent: 'flex-start',
+    },
+
+    txtListaVazia1: {
+        color: '#808080',
+        textAlign: 'center',
+        fontSize: 14,
+        fontWeight: '700',
+        lineHeight: 19.6
+    },
+    txtListaVazia2: {
+        color: '#808080',
+        textAlign: 'center',
+        fontSize: 14,
+        fontWeight: '400',
+        lineHeight: 19.6
+    },
+
+    imagemLista:{
+        marginTop: 48,
+        marginBottom: 16,
+        width: 56,
+        height: 56
+    },
+
+    listaVazia:{
+        width: '100%',
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 21,
+        borderTopWidth:1,
+        borderTopColor:"#D9D9D9",
+        paddingVertical: 24,
+    }
   });

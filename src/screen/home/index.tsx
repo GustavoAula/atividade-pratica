@@ -1,4 +1,4 @@
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
 export function Home() {
@@ -19,7 +19,6 @@ export function Home() {
                 <Image source={require("../../../assets/plus.png")} />
             </TouchableOpacity>
             </View>
-        </View>
 
         <View style={styles.contadores}>
           <View style={styles.contadoresBox}>
@@ -32,6 +31,20 @@ export function Home() {
           </View>
         </View>
 
+        <View style={styles.listaVazia}>
+            <Image
+            source={require("../../../assets/lista.png")}
+            style={styles.imagemLista}
+            />
+            <Text style={styles.txtListaVazia1}>
+            Você ainda não tem produtos na lista de compra
+            </Text>
+            <Text style={styles.txtListaVazia2}>
+            Adicione produtos e organize sua lista de compras
+            </Text>
+        </View>
+
+        </View>
     </View>
 
     );
