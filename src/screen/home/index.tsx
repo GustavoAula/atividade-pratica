@@ -1,7 +1,43 @@
-import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
+import { useState } from "react";
 
 export function Home() {
+    
+type ProductType = {
+    id: string;
+    nome: string;
+    concluido: boolean;
+  };
+
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [finishedProducts, setFinishedProducts] = useState<ProductType[]>([]);
+  const [produtoName, setProductName] = useState("");
+
+  function handleAddProduct() {
+    if (!produtoName.trim()) return;
+
+    if (
+      products.find((p) => p.nome === produtoName) ||
+      finishedProducts.find((p) => p.nome === produtoName)
+    ) {
+      return Alert.alert(
+        "Este cadastrado ja foi feito!",
+        "Na sua lista já exite um cadastrado com esse nome."
+      );
+    }
+
+    const newProduct: ProductType = {
+      id: String(new Date().getTime()),
+      nome: produtoName,
+      concluido: false,
+    };
+
+    setProducts((prev) => [...prev, newProduct]);
+    setProductName("");
+  }
+
+
     return (
     <View style={styles.container}>
       <View style={styles.top}>
