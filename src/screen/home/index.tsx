@@ -42,7 +42,7 @@ type ProductType = {
     
         const product = products.find((p) => p.id === id);
         if (product) {
-        const updated = { ...product, completed: true };
+        const updated = { ...product, concluido: true };
         setProducts((prev) => prev.filter((p) => p.id !== id));
         setFinishedProducts((prev) => [...prev, updated]);
         return;
@@ -50,10 +50,27 @@ type ProductType = {
         
         const finished = finishedProducts.find((p) => p.id === id);
         if (finished) {
-        const updated = { ...finished, completed: false };
+        const updated = { ...finished, concluido: false };
         setFinishedProducts((prev) => prev.filter((p) => p.id !== id));
         setProducts((prev) => [...prev, updated]);
         }
+    }
+
+    function handleProductRemove(id: string) {
+
+        Alert.alert("Remover", `Deseja remover seu produto?`, [
+        {
+            text: "Sim",
+            onPress: () => {
+            setProducts((prev) => prev.filter((p) => p.id !== id));
+            setFinishedProducts((prev) => prev.filter((p) => p.id !== id));
+            },
+        },
+        {
+            text: "Não",
+            style: "cancel",
+        },
+        ]);
     }
     
   const allProducts = [...products, ...finishedProducts];
@@ -70,8 +87,10 @@ type ProductType = {
                 style={styles.input}
                 placeholder="Adicione um novo produto"
                 placeholderTextColor="#808080"
+                onChangeText={setProductName}
+                value={produtoName}
             />
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={handleAddProduct}>
                 <Image source={require("../../../assets/plus.png")} />
             </TouchableOpacity>
             </View>
@@ -79,7 +98,7 @@ type ProductType = {
         <View style={styles.contadores}>
           <View style={styles.contadoresBox}>
             <Text style={styles.produtos}>Produtos</Text>
-            <Text style={styles.contadorProdutos}>{finishedProducts.length}</Text>
+            <Text style={styles.contadorProdutos}>{products.length}</Text>
           </View>
           <View style={styles.contadoresBox}>
             <Text style={styles.finalizados}>Finalizados</Text>
@@ -87,7 +106,10 @@ type ProductType = {
           </View>
         </View>
 
-        <View style={styles.listaVazia}>
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 20 }}
+          ListEmptyComponent={() => (
+            <View style={styles.listaVazia}>
               <Image
                 source={require("../../../assets/lista.png")}
                 style={styles.imagemLista}
@@ -99,6 +121,22 @@ type ProductType = {
                 Adicione produtos e organize sua lista de compras
               </Text>
             </View>
+          )}
+          showsVerticalScrollIndicator={false}
+          data={allProducts}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => {
+            return (
+              <Product
+                id={item.id}
+                nome={item.nome}
+                concluido={item.concluido}
+                onRemove={() => handleProductRemove(item.id)}
+                onCheck={() => handleProductToggle(item.id)}
+              />
+            );
+          }}
+        />
         </View>
     </View>
 

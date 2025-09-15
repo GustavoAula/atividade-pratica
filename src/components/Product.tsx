@@ -3,18 +3,18 @@ import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
 interface Props {
   id: string;
   nome: string;
-  completed: boolean;
+  concluido: boolean;
   onRemove: () => void;
   onCheck: () => void;
 }
 
-export function Product({ nome, completed, onRemove, onCheck }: Props) {
+export function Product({ nome, concluido, onRemove, onCheck }: Props) {
   return (
-    <View style={[styles.container, completed && { borderColor: "#D9D9D9" }]}>
+    <View style={[styles.container, concluido && { borderColor: "#D9D9D9" }]}>
       <TouchableOpacity style={styles.buttonCheckList} onPress={onCheck}>
         <Image
           source={
-            completed
+            concluido
               ? require("../../assets/layerRoxo.png")
               : require("../../assets/layerVerde.png")
           }
@@ -25,7 +25,7 @@ export function Product({ nome, completed, onRemove, onCheck }: Props) {
       <Text
         style={[
           styles.nome,
-          completed && { textDecorationLine: "line-through", color: "#808080" },
+          concluido && { textDecorationLine: "line-through", color: "#808080" },
         ]}
         numberOfLines={1}
       >
@@ -33,7 +33,7 @@ export function Product({ nome, completed, onRemove, onCheck }: Props) {
       </Text>
       <TouchableOpacity style={styles.botaoRemover} onPress={onRemove}>
         <Image
-          source={require("../../assets/layerDelete.png")}
+          source={require("../../assets/layerLixeira.png")}
           style={styles.iconeDeletar}
         />
       </TouchableOpacity>
