@@ -49,4 +49,38 @@ export const styles = StyleSheet.create({
         backgroundColor:'#31C667',
         borderRadius:6,
     },
+    contadores: {
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "space-between",
+        marginTop: 34, 
+        paddingHorizontal: 24,
+    },
+
+    contadoresBox: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+
+    contadorProdutos:{
+        paddingVertical: 2,
+        paddingHorizontal: 8,
+        borderRadius: 999,
+        backgroundColor: "#D9D9D9",
+        fontWeight: "700",
+        fontSize: 12,
+        color: "#333",
+    },
+    produtos:{
+        color: '#31C667',
+        fontWeight: '700',
+        fontSize: 14,
+        marginRight: 8,
+    },
+    finalizados: {
+        color: '#7A4A9E',
+        fontWeight: '700',
+        fontSize: 14,
+        marginRight: 8,
+    },
   });

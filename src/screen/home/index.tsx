@@ -21,6 +21,17 @@ export function Home() {
             </View>
         </View>
 
+        <View style={styles.contadores}>
+          <View style={styles.contadoresBox}>
+            <Text style={styles.produtos}>Produtos</Text>
+            <Text style={styles.contadorProdutos}></Text>
+          </View>
+          <View style={styles.contadoresBox}>
+            <Text style={styles.finalizados}>Finalizados</Text>
+            <Text style={styles.contadorProdutos}></Text>
+          </View>
+        </View>
+
     </View>
 
     );
